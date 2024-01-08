@@ -1,0 +1,51 @@
+.footer {
+  display: flex;
+  align-items: center;
+  margin: -0.5rem -3.5rem;
+  position: relative;
+  margin-top: -7rem;
+}
+.f-content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 4rem;
+  gap: 4rem;
+  color: white;
+}
+.f-icons {
+  display: flex;
+  gap: 2rem;
+}
+.icy-blur-stripe {
+  width: 100%;
+  background: linear-gradient(90deg, #f0f8ff, #e6f7ff); /* Gradient background for an icy effect */
+  padding: 15px 0; /* Padding around the stripe */
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #bfe3ff; /* Light border at the bottom */
+  backdrop-filter: blur(10px); /* Blur effect */
+}
+.email {
+  display: inline-block;
+}
+.text {
+  /* Set the text color and font properties */
+  color: #333; /* Text color */
+  font-family: Arial, sans-serif; /* Font family */
+  font-size: 18px; /* Font size */
+  font-weight: bold; /* Font weight */
+  text-transform: uppercase; /* Text transformation */
+}
+
+
+
+
+@media screen and (max-width: 480px){
+  .f-content{
+    transform: scale(.5);
+  }
+}
