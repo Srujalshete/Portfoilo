@@ -1,4 +1,4 @@
-![IMG](https://github.com/Srujalshete/Portfoilo/assets/67551839/6a7a6f9a-427d-4d12-b371-9a580128cfea) PORTFOLIO CREATED BT SRUJAL SHETE
+![IMG](https://github.com/Srujalshete/Portfoilo/assets/67551839/6a7a6f9a-427d-4d12-b371-9a580128cfea) PORTFOLIO CREATED BY SRUJAL SHETE
 
 ---
 
