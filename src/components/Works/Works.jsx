@@ -7,45 +7,44 @@ import Shopify from "../../img/Shopify.png";
 import Facebook from "../../img/Facebook.png";
 import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
-import {Link} from 'react-scroll'
-const Works = () => {
-  // context
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+import { Link } from 'react-scroll';
 
-  // transition
+const Works = () => {
+  const { state: { darkMode } } = useContext(themeContext);
+
+  // Brands array for easier mapping
+  const brands = [
+    { src: Upwork, alt: "Upwork" },
+    { src: Fiverr, alt: "Fiverr" },
+    { src: Amazon, alt: "Amazon" },
+    { src: Shopify, alt: "Shopify" },
+    { src: Facebook, alt: "Facebook" }
+  ];
+
   return (
     <div className="works" id="works">
-      {/* left side */}
       <div className="w-left">
         <div className="awesome">
-          {/* dark Mode */}
-          <span style={{ color: darkMode ? "white" : "" }}>
-            Works for All these
-          </span>
+          <span style={{ color: darkMode ? "white" : "" }}>Works for All these</span>
           <span>Brands & Clients</span>
-          <spane>
-          "Disclaimer: The brands and clients mentioned in this context are 
+          <span style={{ color: darkMode ? "#D3D3D3" : "black" }}>
+            Disclaimer: The brands and clients mentioned in this context are 
             <br />
             solely used for educational purposes. I have no association or 
             <br />
             intention to work with these companies in real-life scenarios. 
-            <br/>
+            <br />
             The references to these brands and clients are strictly for learning
-            <br/>
-             and demonstration purposes within an educational context."
-          </spane>
+            <br />
+            and demonstration purposes within an educational context.
+          </span>
           <Link to="contact" smooth={true} spy={true}>
             <button className="button s-button">Hire Me</button>
           </Link>
-          <div
-            className="blur s-blur1"
-            style={{ background: "#ABF1FF94" }}
-          ></div>
+          <div className="blur s-blur1" style={{ background: "#ABF1FF94" }}></div>
         </div>
-
-        {/* right side */}
       </div>
+
       <div className="w-right">
         <motion.div
           initial={{ rotate: 45 }}
@@ -54,23 +53,12 @@ const Works = () => {
           transition={{ duration: 3.5, type: "spring" }}
           className="w-mainCircle"
         >
-          <div className="w-secCircle">
-            <img src={Upwork} alt="" />
-          </div>
-          <div className="w-secCircle">
-            <img src={Fiverr} alt="" />
-          </div>
-          <div className="w-secCircle">
-            <img src={Amazon} alt="" />
-          </div>{" "}
-          <div className="w-secCircle">
-            <img src={Shopify} alt="" />
-          </div>
-          <div className="w-secCircle">
-            <img src={Facebook} alt="" />
-          </div>
+          {brands.map((brand, index) => (
+            <div className="w-secCircle" key={index}>
+              <img src={brand.src} alt={brand.alt} />
+            </div>
+          ))}
         </motion.div>
-        {/* background Circles */}
         <div className="w-backCircle blueCircle"></div>
         <div className="w-backCircle yellowCircle"></div>
       </div>

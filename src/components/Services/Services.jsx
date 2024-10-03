@@ -26,23 +26,17 @@ const Services = () => {
         {/* dark mode */}
         <span style={{ color: darkMode ? "white" : "" }}>My Awesome</span>
         <span>services</span>
-        <spane>
-        As a full-stack developer, I provide comprehensive services  
-        <br/>
-        encompassing web and mobile app development, database 
-
-        <br/>
-        management, API creation, UI/UX design, DevOps, testing, 
-
-        <br/>
-        collaboration, documentation, and adherence to Agile methodologies.
-          <br />
-        Create tailored applications with a focus on user experience, 
+        <spane style={{ color: darkMode ? "#D3D3D3" : "black" }}>
+        As a Full-stack developer, I provide comprehensive services  
+        encompassing web and mobile app development,<br/> database management, API creation, UI/UX design, DevOps, testing, 
+        collaboration, documentation,  <br/>and adherence to Agile methodologies.
+  Create tailored applications with a focus on user experience, 
         <br/>offering end-to-end solutions spanning front-end to back-end development.
         </spane>
-        <a href={Resume} download>
-          <button className="button s-button">Download CV</button>
-        </a>
+        <a href={Resume} download style={{ marginTop: '-8px' }}>
+  <button className="button s-button">Download CV</button>
+</a>
+
         <div className="blur s-blur1" style={{ background: "#ABF1FF94" }}></div>
       </div>
       {/* right */}
@@ -50,7 +44,7 @@ const Services = () => {
         {/* first card */}
         <motion.div
           initial={{ left: "25rem" }}
-          whileInView={{ left: "12rem" }}
+          whileInView={{ left: "18rem" }}
           transition={transition}
         >
           <Card
@@ -63,7 +57,7 @@ const Services = () => {
         {/* second card */}
         <motion.div
           initial={{ left: "-11rem", top: "12rem" }}
-          whileInView={{ left: "-4rem" }}
+          whileInView={{ left: "3rem" }}
           transition={transition}
         >
           <Card
@@ -75,8 +69,8 @@ const Services = () => {
         </motion.div>
         {/* 3rd */}
         <motion.div
-          initial={{ top: "19rem", left: "25rem" }}
-          whileInView={{ left: "12rem" }}
+          initial={{ top: "19rem", left: "20rem" }}
+          whileInView={{ left: "18rem" }}
           transition={transition}
         >
           <Card

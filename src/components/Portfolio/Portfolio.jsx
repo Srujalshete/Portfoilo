@@ -2,66 +2,67 @@ import React, { useContext, useState } from "react";
 import "./Portfolio.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import ModalVideo from 'react-modal-video';
-import 'react-modal-video/scss/modal-video.scss';
-import SidebarVideo from "../../img/Sidebar.mp4"; // Import local video files
-import EcommerceVideo from "../../img/Ecommmerce.mp4";
-import HOCVideo from "../../img/hoc.mp4";
-import MusicAppVideo from "../../img/musicapp.mp4";
+import { themeContext } from "../../Context";  
 
 import sidebar from "../../img/sidebar.jpg";
 import hoc from "../../img/hoc.png";
 import musicapp from "../../img/musicapp.jpg";
 import ecommerce from "../../img/ecommerce.jpg";
-import { themeContext } from "../../Context"; // Renamed context for convention
+
+// Example videos (not used in this case anymore)
+const videos = [
+  { img: ecommerce, alt: "Ecommerce" },
+  { img: musicapp, alt: "Music App" },
+  { img: hoc, alt: "HOC" },
+  { img: sidebar, alt: "Sidebar" },
+];
 
 const Portfolio = () => {
-  const { darkMode, toggleDarkMode } = useContext(themeContext);
+  const { darkMode } = useContext(themeContext);
+  const [isModalOpen, setModalOpen] = useState(false);
 
-  const [isOpen, setOpen] = useState(false);
-  const [videoSource, setVideoSource] = useState(null);
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  const openModal = (source) => {
-    setVideoSource(source);
-    setOpen(true);
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
     <div className="portfolio" id="portfolio">
-      {/* heading */}
-      <span style={{ color: darkMode ? 'white' : '' }}>Recent Projects</span>
+      {/* Heading */}
+      <span style={{ color: darkMode ? "white" : "black" }}>Recent Projects</span>
       <span>Portfolio</span>
 
-      {/* slider */}
-      <Swiper
-        spaceBetween={30}
-        slidesPerView={3}
-        grabCursor={true}
-        className="portfolio-slider">
-        <SwiperSlide>
-          <img src={ecommerce} alt="Ecommerce" onClick={() => openModal(EcommerceVideo)} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={musicapp} alt="Music App" onClick={() => openModal(MusicAppVideo)} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={hoc} alt="HOC" onClick={() => openModal(HOCVideo)} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={sidebar} alt="Sidebar" onClick={() => openModal(SidebarVideo)} />
-        </SwiperSlide>
+      {/* Slider */}
+      <Swiper spaceBetween={30} slidesPerView={3} grabCursor={true} className="portfolio-slider">
+        {videos.map(({ img, alt }, index) => (
+          <SwiperSlide key={index}>
+            <img src={img} alt={alt} onClick={openModal} />
+          </SwiperSlide>
+        ))}
       </Swiper>
 
-      {/* Video Modal */}
-      <ModalVideo
-        channel=''
-        isOpen={isOpen}
-        videoUrl={videoSource}
-        onClose={() => {
-          setOpen(false);
-          setVideoSource(null);
-        }}
-      />
+      {/* Error Modal */}
+      {isModalOpen && (
+        <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
+          <div className="modal-dialog modal-dialog-centered modal-sm" role="document"> 
+            <div className="modal-content"> 
+              <div className="modal-body text-center p-lg-4"> 
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                  <circle className="path circle" fill="none" stroke="#db3646" strokeWidth="6" strokeMiterlimit="10" cx="65.1" cy="65.1" r="62.1" /> 
+                  <line className="path line" fill="none" stroke="#db3646" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3" />
+                  <line className="path line" fill="none" stroke="#db3646" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2" /> 
+                </svg> 
+                <h4 className="text-danger mt-3">Coming Soon!</h4> 
+                <p className="mt-3">Currently Video Not available, Please try after some time.</p>
+                <button type="button" className="btn btn-sm mt-3 btn-danger" onClick={closeModal}>Ok</button> 
+              </div> 
+            </div> 
+          </div> 
+        </div>
+      )}
     </div>
   );
 };

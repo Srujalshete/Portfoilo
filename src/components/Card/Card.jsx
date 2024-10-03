@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Card.css";
+import { themeContext } from "../../Context";  
 
-const Card = ({ emoji, heading, detail, color, link }) => {
+const Card = React.memo(({ emoji, heading, detail, color, link }) => {
   const handleLearnMore = () => {
-    // Redirect to the specified link when the "Learn More" button is clicked
-    window.open(link, "_blank"); // Opens link in a new tab/window
+    window.open(link, "_blank");
   };
+  const theme = useContext(themeContext);
+  const darkMode = theme.state.darkMode;
+
 
   return (
     <div className="card" style={{ borderColor: color }}>
-      <img src={emoji} alt="" />
+      <img src={emoji} alt={`${heading} emoji`} />
       <span>{heading}</span>
-      <span>{detail}</span>
-      <button className="c-button" onClick={handleLearnMore}>
+      <span style={{ color: darkMode ? "#D3D3D3" : "black" }}>{detail}</span>
+      <button type="button" className="c-button" onClick={handleLearnMore}>
         LEARN MORE
       </button>
     </div>
   );
-};
+});
 
 export default Card;

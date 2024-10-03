@@ -5,21 +5,20 @@ import Sun from "@iconscout/react-unicons/icons/uil-sun";
 import { themeContext } from "../../Context";
 
 const Toggle = () => {
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+  const { state: { darkMode }, dispatch } = useContext(themeContext);
+
   const handleClick = () => {
-    
-    theme.dispatch({ type: "toggle" });
+    dispatch({ type: "toggle" });
   };
+
   return (
     <div className="toggle" onClick={handleClick}>
       <Moon />
       <Sun />
-     
       <div
         className="t-button"
-        style={darkMode ? { left: "2px" } : { right: "2px" }}
-      ></div>
+        style={{ left: darkMode ? "2px" : "auto", right: darkMode ? "auto" : "2px" }}
+      />
     </div>
   );
 };

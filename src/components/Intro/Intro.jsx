@@ -12,73 +12,60 @@ import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
-const Intro = () => {
-  // Transition
-  const transition = { duration: 2, type: "spring" };
+const transition = { duration: 2, type: "spring" };
 
-  // context
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+const floatingDivs = [
+  { img: crown, text1: "Full Stack Developer", text2: "", initialPos: { top: "-2rem", left: "74%" }, whileInViewPos: { left: "54%" } },
+  { img: thumbup, text1: "", text2: "React Developer", initialPos: { left: "9rem", top: "18rem" }, whileInViewPos: { left: "0rem" } },
+];
+
+const Intro = () => {
+  const { state: { darkMode } } = useContext(themeContext);
 
   return (
     <div className="Intro" id="Intro">
-      {/* left name side */}
       <div className="i-left">
         <div className="i-name">
-          {/* yahan change hy darkmode ka */}
           <span style={{ color: darkMode ? "white" : "" }}>Hey! I Am</span>
           <span>SRUJAL SHETE</span>
-          <span>
-          "I'm a proficient full-stack developer, primarily focused on React for frontend development,
-          <br/> yet equipped with comprehensive backend technology knowledge and hands-on experience."
-          </span>
+          <span className="i-description" style={{ color: darkMode ? "#D3D3D3" : "black" }}>
+  "As a proficient Full-Stack Developer, I specialize in crafting dynamic and responsive user interfaces with React and Next.js. My expertise extends to backend technologies like Node.js and NestJS, as well as databases such as MongoDB. With a strong command of JavaScript and Express.js, I ensure seamless integration and functionality across the entire application stack."
+</span>
         </div>
         <Link to="contact" smooth={true} spy={true}>
           <button className="button i-button">Hire me</button>
         </Link>
-        {/* social icons */}
-         <div className="i-icons">
-          <img src={Github} alt="" />
-          <img src={LinkedIn} alt="" />
-          <img src={Instagram} alt="" />
+        <div className="i-icons">
+          <img src={Github} alt="Github" />
+          <img src={LinkedIn} alt="LinkedIn" />
+          <img src={Instagram} alt="Instagram" />
         </div>
-      </div>  
-  
-      {/* right image side */}
+      </div>
+
       <div className="i-right">
-      <img src={boys} alt="" />
-         {/* <img src={boys} alt="Boy" style={{ width: '500px', height: '500px', alignSelf: 'flex-end',}} />  */}
-        {/* animation */}
+        <img src={boys} alt="Boys" />
         <motion.img
           initial={{ left: "56%" }}
           whileInView={{ left: "-15%" }}
           transition={transition}
           src={glassesimoji}
           alt="Glasses Emoji"
-          style={{ width: '150px', height: 'auto' }}
+          className="emoji-img"
+          style={{ width: '200px', height: 'auto' }}
         />
 
-        <motion.div
-          initial={{ top: "-2rem", left: "74%" }}
-          whileInView={{ left: "54%" }}
-          transition={transition}
-          className="floating-div"
-          style={{ width: 'auto', height: '100px' }}
-        >
-          <FloatinDiv img={crown} text1="Full Stack" text2="Developer" />
-        </motion.div>
-
-        {/* Adjust the size of the thumbup image */}
-        <motion.div
-          initial={{ left: "9rem", top: "18rem" }}
-          whileInView={{ left: "0rem" }}
-          transition={transition}
-          className="floating-div"
-          style={{ width: 'auto', height: '200px' }}
-        >
-          {/* floatinDiv mein change hy dark mode ka */}
-          <FloatinDiv img={thumbup} text1="React" text2="Developer" />
-        </motion.div>
+        {floatingDivs.map((div, index) => (
+   <motion.div
+   key={index}
+   initial={div.initialPos}
+   whileInView={div.whileInViewPos}
+   transition={transition}
+   className="floating-div"
+   style={{ width: '250px', height: index === 1 ? '120px' : '100px' }} // Larger size for React Developer
+ >
+   <FloatinDiv img={div.img} text1={div.text1} text2={div.text2} />
+ </motion.div>       
+        ))}
 
         <div className="blur" style={{ background: "rgb(238 210 255)" }}></div>
         <div
@@ -92,7 +79,7 @@ const Intro = () => {
           }}
         ></div>
       </div>
-      </div>
+    </div>
   );
 };
 

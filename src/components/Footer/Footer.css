@@ -33,12 +33,19 @@
   display: inline-block;
 }
 .text {
-  /* Set the text color and font properties */
-  color: #333; /* Text color */
-  font-family: Arial, sans-serif; /* Font family */
-  font-size: 18px; /* Font size */
-  font-weight: bold; /* Font weight */
-  text-transform: uppercase; /* Text transformation */
+  font-size: 6xl;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(to right, indigo, purple);
+}
+
+.email:hover {
+  color: #a24ebc; /* Change color on hover */
+  text-decoration: underline; /* Underline on hover */
+  text-shadow: 0 0 5px rgba(215, 121, 240, 0.579), 0 0 10px; /* Add shadow for depth */
 }
 
 
