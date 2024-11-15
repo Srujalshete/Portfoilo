@@ -1,0 +1,88 @@
+/* Styles for Desktop */
+
+/* General styles */
+.n-wrapper {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  top: 0;
+}
+
+.n-left {
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start; /* Aligned left for desktop */
+  display: flex;
+  gap: 2rem;
+}
+
+.n-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.n-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 400;
+}
+
+.n-list {
+  flex: 10;
+}
+
+.n-list > ul {
+  display: flex;
+  gap: 2rem;
+  margin-right: 4rem;
+}
+
+.n-list > ul li:hover {
+  color: var(--orange);
+  cursor: pointer;
+}
+
+.n-button {
+  flex: 2;
+}
+
+/* Media Query for Mobile Devices */
+
+@media screen and (max-width: 480px) {
+  /* Mobile-specific styles */
+
+  /* Reset desktop-specific styles */
+  .n-wrapper {
+    height: auto; /* Adjusted height for mobile */
+    margin-bottom: 1rem; /* Decreased margin for mobile */
+    padding: 1rem; /* Added padding for mobile */
+  }
+
+  .n-left {
+    justify-content: flex-start; /* Adjusted alignment for mobile */
+    gap: 1rem; /* Decreased gap for mobile */
+  }
+
+  .n-name {
+    font-size: 1.2rem; /* Decreased font size for mobile */
+  }
+
+  .n-list > ul {
+    flex-direction: column; /* Column layout for mobile */
+    gap: 1rem; /* Adjusted gap for mobile */
+    margin-right: 0; /* Removed right margin for mobile */
+    display: none; /* Initially hide the list for mobile */
+  }
+
+  .n-list > ul li:hover {
+    color: var(--orange);
+    cursor: pointer;
+  }
+
+  .n-button {
+    display: block; /* Show the toggle button for mobile */
+  }
+}
