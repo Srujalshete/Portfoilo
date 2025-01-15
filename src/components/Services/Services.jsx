@@ -6,7 +6,7 @@ import Glasses from "../../img/glasses.png";
 import Humble from "../../img/humble.png";
 import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
-import Resume from './SrujalCV.pdf';
+import Resume from "./SrujalCV.pdf";
 
 const Services = () => {
   // context
@@ -26,16 +26,26 @@ const Services = () => {
         {/* dark mode */}
         <span style={{ color: darkMode ? "white" : "" }}>My Awesome</span>
         <span>services</span>
-        <spane style={{ color: darkMode ? "#D3D3D3" : "black" }}>
-        As a Full-stack developer, I provide comprehensive services  
-        encompassing web and mobile app development,<br/> database management, API creation, UI/UX design, DevOps, testing, 
-        collaboration, documentation,  <br/>and adherence to Agile methodologies.
-  Create tailored applications with a focus on user experience, 
-        <br/>offering end-to-end solutions spanning front-end to back-end development.
+        <spane
+          style={{
+            color: darkMode ? "#D3D3D3" : "black",
+            display: "block",
+            textAlign: "center",
+          }}
+        >
+          As a Full-stack developer, I provide comprehensive services
+          encompassing web and mobile app development,
+          <br /> database management, API creation, UI/UX design, DevOps,
+          testing, collaboration, documentation, <br />
+          and adherence to Agile methodologies. Create tailored applications
+          with a focus on user experience,
+          <br />
+          offering end-to-end solutions spanning front-end to back-end
+          development.
         </spane>
-        <a href={Resume} download style={{ marginTop: '-8px' }}>
-  <button className="button s-button">Download CV</button>
-</a>
+        <a href={Resume} download style={{ marginTop: "-8px" }}>
+          <button className="button s-button">Download CV</button>
+        </a>
 
         <div className="blur s-blur1" style={{ background: "#ABF1FF94" }}></div>
       </div>
@@ -50,7 +60,9 @@ const Services = () => {
           <Card
             emoji={HeartEmoji}
             heading={"Frontend"}
-            detail={"HTML, CSS, JavaScript, React.js/React Native, Bootstrap, Material UI"}
+            detail={
+              "HTML, CSS, JavaScript, React.js/React Native, Bootstrap, Material UI"
+            }
             link="https://github.com/thedaviddias/Front-End-Checklist.git"
           />
         </motion.div>
@@ -76,7 +88,9 @@ const Services = () => {
           <Card
             emoji={Humble}
             heading={"Database"}
-            detail={"MySQL, PostgreSQL, MongoDB, SQLite, Firebase Firestore, Amazon DynamoDB"}
+            detail={
+              "MySQL, PostgreSQL, MongoDB, SQLite, Firebase Firestore, Amazon DynamoDB"
+            }
             color="rgba(252, 166, 31, 0.45)"
             link="https://github.com/netdata/netdata.git"
           />

@@ -3,8 +3,8 @@ import { themeContext } from "../../Context";
 import "./Experience.css";
 
 const achievementsData = [
-  { value: "1+", label: "years", title: "Experience" },
-  { value: "7+", label: "completed", title: "Projects" },
+  { value: "2+", label: "years", title: "Experience" },
+  { value: "13+", label: "completed", title: "Projects" },
   { value: "2+", label: "companies", title: "Work" },
 ];
 

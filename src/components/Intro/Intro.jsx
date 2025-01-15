@@ -15,30 +15,70 @@ import { Link } from "react-scroll";
 const transition = { duration: 2, type: "spring" };
 
 const floatingDivs = [
-  { img: crown, text1: "Full Stack Developer", text2: "", initialPos: { top: "-2rem", left: "74%" }, whileInViewPos: { left: "54%" } },
-  { img: thumbup, text1: "", text2: "React Developer", initialPos: { left: "9rem", top: "18rem" }, whileInViewPos: { left: "0rem" } },
+  {
+    img: crown,
+    text1: "Full Stack Developer",
+    text2: "",
+    initialPos: { top: "-2rem", left: "74%" },
+    whileInViewPos: { left: "54%" },
+  },
+  {
+    img: thumbup,
+    text1: "",
+    text2: "React Developer",
+    initialPos: { left: "9rem", top: "18rem" },
+    whileInViewPos: { left: "0rem" },
+  },
 ];
 
 const Intro = () => {
-  const { state: { darkMode } } = useContext(themeContext);
+  const {
+    state: { darkMode },
+  } = useContext(themeContext);
 
   return (
     <div className="Intro" id="Intro">
       <div className="i-left">
         <div className="i-name">
-          <span style={{ color: darkMode ? "white" : "" }}>Hey! I Am</span>
+          <span style={{ color: darkMode ? "white" : "" }}>Hey! I am</span>
           <span>SRUJAL SHETE</span>
-          <span className="i-description" style={{ color: darkMode ? "#D3D3D3" : "black" }}>
-  As a proficient Full-Stack Developer, I specialize in crafting dynamic and responsive user interfaces with React and Next.js. My expertise extends to backend technologies like Node.js and NestJS, as well as databases such as MongoDB. With a strong command of JavaScript and Express.js, I ensure seamless integration and functionality across the entire application stack.
-</span>
+          <span
+            className="i-description"
+            style={{ color: darkMode ? "#D3D3D3" : "black" }}
+          >
+            As a proficient Full-Stack Developer, I specialize in crafting
+            dynamic and responsive user interfaces with React and Next.js. My
+            expertise extends to backend technologies like Node.js and NestJS,
+            as well as databases such as MongoDB. With a strong command of
+            JavaScript and Express.js, I ensure seamless integration and
+            functionality across the entire application stack.
+          </span>
         </div>
         <Link to="contact" smooth={true} spy={true}>
           <button className="button i-button">Hire me</button>
         </Link>
         <div className="i-icons">
-          <img src={Github} alt="Github" />
-          <img src={LinkedIn} alt="LinkedIn" />
-          <img src={Instagram} alt="Instagram" />
+          <a
+            href="https://github.com/srujalshete"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={Github} alt="Github" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/srujal-shete"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={LinkedIn} alt="LinkedIn" />
+          </a>
+          <a
+            href="https://www.instagram.com/sujalrshete"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={Instagram} alt="Instagram" />
+          </a>
         </div>
       </div>
 
@@ -51,20 +91,20 @@ const Intro = () => {
           src={glassesimoji}
           alt="Glasses Emoji"
           className="emoji-img"
-          style={{ width: '200px', height: 'auto' }}
+          style={{ width: "200px", height: "auto" }}
         />
 
         {floatingDivs.map((div, index) => (
-   <motion.div
-   key={index}
-   initial={div.initialPos}
-   whileInView={div.whileInViewPos}
-   transition={transition}
-   className="floating-div"
-   style={{ width: '250px', height: index === 1 ? '120px' : '100px' }} // Larger size for React Developer
- >
-   <FloatinDiv img={div.img} text1={div.text1} text2={div.text2} />
- </motion.div>       
+          <motion.div
+            key={index}
+            initial={div.initialPos}
+            whileInView={div.whileInViewPos}
+            transition={transition}
+            className="floating-div"
+            style={{ width: "250px", height: index === 1 ? "120px" : "100px" }} // Larger size for React Developer
+          >
+            <FloatinDiv img={div.img} text1={div.text1} text2={div.text2} />
+          </motion.div>
         ))}
 
         <div className="blur" style={{ background: "rgb(238 210 255)" }}></div>

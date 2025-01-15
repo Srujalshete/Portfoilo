@@ -2,51 +2,63 @@ import React, { useContext, useState, useEffect } from "react";
 import "./Portfolio.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { themeContext } from "../../Context";  
+import { themeContext } from "../../Context";
 
-import sidebar from "../../img/sidebar.jpg";
+import ChatWave from "../../img/sidebar.jpg";
 import hoc from "../../img/hoc.png";
 import musicapp from "../../img/musicapp.jpg";
 import ecommerce from "../../img/ecommerce.jpg";
 
-// Example projects
 const videos = [
-  { img: ecommerce, alt: "Ecommerce" },
-  { img: musicapp, alt: "Music App" },
-  { img: hoc, alt: "HOC" },
-  { img: sidebar, alt: "Sidebar" },
+  {
+    img: ecommerce,
+    alt: "Ecommerce",
+    videoUrl: require("../../img/Ecommmerce.mp4"),
+    codeUrl: "https://github.com/Srujalshete/Netflix-clone-app.git",
+  },
+  {
+    img: musicapp,
+    alt: "Music App",
+    videoUrl: require("../../img/musicapp.mp4"),
+    codeUrl:
+      "https://github.com/Srujalshete/Saloon-Appointment-Booking-Application.git",
+  },
+  {
+    img: hoc,
+    alt: "HOC",
+    videoUrl: require("../../img/hoc.mp4"),
+    codeUrl: "https://github.com/Srujalshete/ChatWave.git",
+  },
+  {
+    img: ChatWave,
+    alt: "ChatWave",
+    videoUrl: require("../../img/Sidebar.mp4"),
+    codeUrl: "https://github.com/Srujalshete/Heart-Disease-Prediction-App.git",
+  },
 ];
 
 const Portfolio = () => {
   const { darkMode } = useContext(themeContext);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
 
-  const openModal = () => {
+  const openModal = (video) => {
+    setSelectedVideo(video);
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    setSelectedVideo(null);
   };
 
-  // Update slidesPerView based on screen width
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setSlidesPerView(1); // 1 slide on mobile
-      } else {
-        setSlidesPerView(3); // 3 slides on larger screens
-      }
+      setSlidesPerView(window.innerWidth < 768 ? 1 : 3);
     };
-
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -54,36 +66,91 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio" id="portfolio">
-      {/* Heading */}
-      <span style={{ color: darkMode ? "white" : "black" }}>Recent Projects</span>
+      <span style={{ color: darkMode ? "white" : "black" }}>
+        Recent Projects
+      </span>
       <span>Portfolio</span>
+      <p
+        style={{
+          color: darkMode ? "white" : "gray",
+          textAlign: "center",
+          marginBottom: "20px",
+        }}
+      >
+        Click on an image to see the video and project code, Also you can find
+        more projects on Github.
+        <span style={{ color: "red", fontSize: "0.8rem" }}>*</span>
+      </p>
 
-      {/* Slider */}
-      <Swiper spaceBetween={30} slidesPerView={slidesPerView} grabCursor={true} className="portfolio-slider">
-        {videos.map(({ img, alt }, index) => (
+      <Swiper
+        spaceBetween={30}
+        slidesPerView={slidesPerView}
+        grabCursor={true}
+        className="portfolio-slider"
+      >
+        {videos.map((video, index) => (
           <SwiperSlide key={index}>
-            <img src={img} alt={alt} onClick={openModal} />
+            <img
+              src={video.img}
+              alt={video.alt}
+              onClick={() => openModal(video)}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false">
-          <div className="modal-dialog modal-dialog-centered modal-sm" role="document"> 
-            <div className="modal-content"> 
-              <div className="modal-body text-center p-lg-4"> 
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                  <circle className="path circle" fill="none" stroke="#db3646" strokeWidth="6" strokeMiterlimit="10" cx="65.1" cy="65.1" r="62.1" /> 
-                  <line className="path line" fill="none" stroke="#db3646" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3" />
-                  <line className="path line" fill="none" stroke="#db3646" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2" /> 
-                </svg> 
-                <h4 className="text-danger mt-3">Coming Soon!</h4> 
-                <p className="mt-3">Currently Video Not available, Please try after some time.</p>
-                <button type="button" className="btn btn-sm mt-3 btn-danger" onClick={closeModal}>Ok</button> 
-              </div> 
-            </div> 
-          </div> 
+      {isModalOpen && selectedVideo && (
+        <div
+          className="modal fade show"
+          style={{ display: "block" }}
+          tabIndex="-1"
+          role="dialog"
+        >
+          <div
+            className="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+          >
+            <div className="modal-content">
+              <div className="modal-body">
+                <video controls style={{ width: "100%" }}>
+                  <source src={selectedVideo.videoUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-code"
+                  onClick={() => window.open(selectedVideo.codeUrl, "_blank")}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                    style={{ marginRight: "5px" }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3L9.75 19.5"
+                    />
+                  </svg>
+                  Code
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
