@@ -42,7 +42,7 @@ Welcome to my dynamic portfolio website, a captivating canvas where innovation m
 
 - **Contact:** Connect with ease through a user-friendly contact form.
 
-**Experience the Updated Portfolio:**
+**Experience the Portfolio:**
 
 Take a tour through my portfolio and immerse yourself in the fusion of innovation, design, and functionality brought to life by React.js and Yarn package manager. 
 
